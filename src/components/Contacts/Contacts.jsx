@@ -2,7 +2,7 @@ import { React } from 'react';
 import { getContacts, getFilterContacts } from 'redux/selectors';
 import style from '../Contacts/Contacts.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 const getVisibleContacts = (filterData, contacts) => {
   const normalizedFilter = filterData.toLowerCase();

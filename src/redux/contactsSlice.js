@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
 const initialState = {
-  items: [],
+  contacts: [],
   isLoading: false,
   error: null,
 };
 
-export const contactsSlice = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialState,
   reducers: {
@@ -15,7 +15,6 @@ export const contactsSlice = createSlice({
       [fetchContacts.pending](state) {
         state.isLoading = true;
       },
-
       [fetchContacts.fulfilled](state, action) {
         state.isLoading = false;
         state.error = null;
@@ -45,7 +44,7 @@ export const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.contacts.findIndex(
-          contact => contact.contactId === action.payload.contactId
+          contact => contact.contact.id === action.payload.contact.id
         );
         state.contacts.splice(index, 1);
       },

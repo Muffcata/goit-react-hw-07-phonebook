@@ -1,8 +1,8 @@
 import { React } from 'react';
 import style from '../Filter/Filter.module.css';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { setContactsFilter } from 'redux/filterSlice';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,10 @@ const Filter = () => {
           className={style.input}
           onChange={filterHandler}
           type="text"
+          name="filter"
+          id="filter"
+          value={useSelector(selectFilter)}
+          disabled={useSelector(selectContacts).length === 0}
         ></input>
       </label>
     </div>

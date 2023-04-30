@@ -1,15 +1,14 @@
 .wrapper {
   padding: 10px;
-  margin: 33px;
 }
 
 .list {
-  border: 1px solid #000;
+  border: 1px solid #7b605f;
   padding: 15px;
   width: 400px;
   border-radius: 10px;
   list-style: none;
-  margin-top: 10px;
+  margin: 28px;
   background: linear-gradient(
     90deg,
     rgba(240, 240, 240, 0.9) 0%,

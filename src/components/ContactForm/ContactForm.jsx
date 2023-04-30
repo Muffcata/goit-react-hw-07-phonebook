@@ -10,6 +10,7 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const form = e.target;
     const name = e.target.elements.name.value;
     const phone = e.target.elements.phone.value;
     const foundContant = contacts.find(contact => contact.name === name);
@@ -19,6 +20,7 @@ const ContactForm = () => {
     } else {
       dispatch(addContact({ name: name, phone: phone }));
     }
+    form.reset();
   };
 
   return (

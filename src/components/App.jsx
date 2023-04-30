@@ -4,9 +4,8 @@ import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError } from 'redux/selectors';
 import ContactForm from './ContactForm/ContactForm';
-// import ContactList from './Contacts/Contacts';
+import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import Contacts from './Contacts/Contacts';
 export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
@@ -22,8 +21,7 @@ export const App = () => {
       <h2>Contacts:</h2>
       <Filter />
       {isLoading && !error && <b>Request in progress...</b>}
-      {/* <ContactList /> */}
-      <Contacts />
+      <ContactList />
     </div>
   );
 };

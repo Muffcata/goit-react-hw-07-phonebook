@@ -1,21 +1,27 @@
 import { React } from 'react';
-import { selectFilteredContacts, selectIsLoading } from 'redux/selectors';
 
-import { useSelector } from 'react-redux';
-import ContactList from 'components/ContactList/ContactList';
+import style from '../Contacts/Contacts.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/operations';
 
-const Contacts = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
-
-  const isLoading = useSelector(selectIsLoading);
+export const Contacts = contact => {
+  const dispatch = useDispatch();
 
   return (
-    <>
-      {isLoading && <>Loading...</>}
-      {filteredContacts.map(({ id, name, phone }) => (
-        <ContactList key={id} contact={{ id, name, phone }} />
-      ))}
-    </>
+    <li className={style.list} key={contact.id}>
+      <div className={style.text}>
+        <p className={style.name}>
+          {contact.name} : {contact.phone}
+        </p>
+        <button
+          className={style.button}
+          type="button"
+          onClick={() => dispatch(deleteContact(contact.id))}
+        >
+          Delete
+        </button>
+      </div>
+    </li>
   );
 };
 

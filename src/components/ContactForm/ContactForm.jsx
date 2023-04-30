@@ -10,29 +10,39 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const name = e.target.elements.name.value;
-    const phone = e.target.elements.phone.value;
+    const form = e.target;
+    const isContactExist = contacts.find(
+      contact =>
+        contact.name.toLowerCase() ===
+        e.target.elements.name.value.toLowerCase()
+    );
+    const isPhoneExist = contacts.find(
+      contact => contact.phone === e.target.elements.phone.value
+    );
 
-    const foundContant = contacts.find(contact => contact.name === name);
-    if (foundContant) {
+    if (isContactExist) {
       alert(`User ${e.target.elements.name.value} is already in contacts`);
       return;
     }
-    if (foundContant) {
+    if (isPhoneExist) {
       alert(`Number ${e.target.elements.phone.value} is already in contacts`);
       return;
-    } else {
-      dispatch(addContact({ name, phone }));
-
-      form.reset();
     }
+
+    dispatch(
+      addContact({
+        name: e.target.elements.name.value,
+        phone: e.target.elements.phone.value,
+      })
+    );
+
+    form.reset();
   };
 
   return (
     <div className={style.form_wrapper}>
       <form onSubmit={handleSubmit}>
-        <label className={style.label}>
+        <label className={style.label} htmlFor="name">
           Name
           <input
             className={style.input_name}
@@ -43,7 +53,7 @@ const ContactForm = () => {
             required
           />
         </label>
-        <label className={style.label}>
+        <label className={style.label} htmlFor="phone">
           Number
           <input
             className={style.input_number}
